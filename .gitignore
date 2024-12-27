@@ -10,3 +10,5 @@ rendered_recipe*
 .cache*
 .ccls-cache*
 *.gch
+.direnv
+result
