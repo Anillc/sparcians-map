@@ -60,9 +60,9 @@ if(NOT SPARTA_FOUND)
     ##################################
 
     if(NOT CMAKE_VERSION VERSION_LESS 3.0 AND SPARTA_FOUND)
-        add_library(SPARTA::libsparta STATIC IMPORTED)
+        add_library(SPARTA::libsparta SHARED IMPORTED)
         set_property(TARGET SPARTA::libsparta PROPERTY IMPORTED_LOCATION "${SPARTA_sparta_LIBRARY}")
-        add_library(SPARTA::libsimdb STATIC IMPORTED)
+        add_library(SPARTA::libsimdb SHARED IMPORTED)
         set_property(TARGET SPARTA::libsimdb PROPERTY IMPORTED_LOCATION "${SPARTA_simdb_LIBRARY}")
 
         add_library(SPARTA::sparta INTERFACE IMPORTED)

@@ -13,7 +13,7 @@ list(APPEND SimDB_CPP
   src/TableRef.cpp
   src/simdb.cpp)
 
-add_library(simdb ${SimDB_CPP})
+add_library(simdb SHARED ${SimDB_CPP})
 
 add_subdirectory(test EXCLUDE_FROM_ALL)
 

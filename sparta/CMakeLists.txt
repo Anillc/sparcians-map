@@ -211,13 +211,16 @@ set (CPPCHECK_EXCLUDES
 )
 find_package (Cppcheck)
 
-add_library (sparta ${SourceCppFiles})
+set (SPARTA_LINK_LIBS ${Sparta_LIBS})
+list (REMOVE_ITEM SPARTA_LINK_LIBS sparta)
+
+add_library (sparta SHARED ${SourceCppFiles})
+target_link_libraries (sparta PUBLIC ${SPARTA_LINK_LIBS})
 
 # Add local includes
 target_include_directories (sparta PUBLIC "./")
 target_include_directories (sparta PUBLIC "simdb/include")
 
-set (SPARTA_STATIC_LIBS ${PROJECT_BINARY_DIR}/libsparta.a)
 set (SPARTA_CMAKE_MACRO_PATH ${SPARTA_BASE}/cmake)
 
 # Build the SimDB library
@@ -232,7 +235,10 @@ add_subdirectory (example EXCLUDE_FROM_ALL)
 #
 # Installation
 #
+install(TARGETS sparta
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
 install(DIRECTORY sparta/ DESTINATION include/sparta)
 install(DIRECTORY cache/ DESTINATION include/cache)
-install(FILES ${SPARTA_STATIC_LIBS} DESTINATION lib)
 install(DIRECTORY cmake/ DESTINATION lib/cmake/sparta)

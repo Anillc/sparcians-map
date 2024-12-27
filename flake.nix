@@ -12,7 +12,9 @@
           "-DGIT_REPO_VERSION=${version}"
           "-DCMAKE_BUILD_TYPE=Release"
         ];
-        buildInputs = with pkgs; [ boost yaml-cpp rapidjson sqlite zlib hdf5 ];
+        buildInputs = with pkgs; [ boost186 yaml-cpp rapidjson sqlite zlib hdf5 ];
+        # FindSparta.cmake will find dependencies, so keep this.
+        propagatedBuildInputs = buildInputs;
         nativeBuildInputs = with pkgs; [ cmake cppcheck ];
       };
       devShells.default = pkgs.mkShell {
